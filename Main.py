@@ -9,7 +9,7 @@ import cvxpy as cp
 
 kappa = 1/15
 
-def LPdemo(kappa = 1/15):
+def LPdemo(kappa = 1/15, plot = False):
 
     t = 3/(array([5/3,10/3,10/3])@array([23,11,10]))
     X = [array([5/3,10/3,10/3])]
@@ -55,6 +55,9 @@ def LPdemo(kappa = 1/15):
         
         t = t_plus
         count += 1
+
+    if plot:
+        plotLP(X=X)
     
     return X, S, y, count
 
@@ -188,7 +191,7 @@ def SDPcvxpy():
     return X.value, prob.value
 
 
-def SOCPdemo(kappa = 1/15):
+def SOCPdemo(kappa = 1/15, plot = False):
     A = array([[1.0, 0.0, 0.0]])
     b = array([1.0])
     c = array([0.0, 1.0, 2.0])
@@ -256,6 +259,9 @@ def SOCPdemo(kappa = 1/15):
         
         t = t_plus
         count += 1
+
+    if plot:
+        plotSOCP(x_list=x_list)
 
     return x_list, s_list, y_list, count
     
